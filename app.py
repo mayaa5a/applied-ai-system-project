@@ -5,8 +5,19 @@ Connects the Owner / Pet / Task / Scheduler logic layer to the browser UI.
 
 import streamlit as st
 from datetime import date
+from pathlib import Path
 
 from pawpal_system import Owner, Pet, Task, Scheduler
+from utils.rag import (
+    EMERGENCY_MESSAGE,
+    calculate_relevance_score,
+    confidence_label,
+    generate_ai_answer_with_error,
+    is_emergency_question,
+    load_knowledge_base,
+    log_interaction,
+    retrieve_context,
+)
 
 # ── Page config ───────────────────────────────────────────────────────────────
 
@@ -71,6 +82,78 @@ with st.sidebar:
 # ── Main area ─────────────────────────────────────────────────────────────────
 
 st.title(f"🐾 Welcome, {owner.name}!")
+
+st.header("Ask PawPal AI")
+st.caption("Ask a pet-care question and PawPal will answer using its local guide.")
+
+# The knowledge base lives in the project so the app can run without a database.
+knowledge_base_path = Path("data/pet_care_knowledge_base.txt")
+knowledge_text = load_knowledge_base(knowledge_base_path)
+if not knowledge_text:
+    st.warning(
+        "PawPal could not find the local pet-care knowledge base. "
+        "Answers will use a cautious fallback until the file is restored."
+    )
+
+user_question = st.text_area(
+    "Pet-care question",
+    placeholder="Example: How often should I walk my dog?",
+    key="pawpal_ai_question",
+)
+
+if st.button("Ask PawPal", key="ask_pawpal_btn"):
+    clean_question = user_question.strip()
+    if not clean_question:
+        st.warning("Enter a question first.")
+    else:
+        retrieved_context = retrieve_context(clean_question, knowledge_text, top_k=2)
+        confidence_score = calculate_relevance_score(clean_question, retrieved_context)
+        emergency_triggered = is_emergency_question(clean_question)
+        error_message = ""
+
+        # Emergency questions should never call the AI model.
+        if emergency_triggered:
+            answer = EMERGENCY_MESSAGE
+            st.error(answer)
+        else:
+            answer, error_message = generate_ai_answer_with_error(
+                clean_question,
+                retrieved_context,
+            )
+            st.success("PawPal AI answer")
+            if error_message:
+                st.warning(
+                    "PawPal could not reach the AI model, so it used the retrieved "
+                    "pet-care guide to create a fallback answer."
+                )
+
+        log_interaction(
+            clean_question,
+            retrieved_context,
+            answer,
+            confidence_score=confidence_score,
+            emergency_triggered=emergency_triggered,
+            error_message=error_message,
+        )
+
+        st.subheader("Reliability score")
+        st.write(f"{confidence_score:.2f} ({confidence_label(confidence_score)})")
+        if confidence_score < 0.5:
+            st.warning(
+                "PawPal found limited matching information, so this answer may be "
+                "less reliable. Consider checking with a vet or trusted pet-care source."
+            )
+
+        st.subheader("Retrieved context")
+        if retrieved_context:
+            st.info(retrieved_context)
+        else:
+            st.info("No matching guide section was retrieved.")
+
+        st.subheader("Final answer")
+        st.write(answer)
+
+st.divider()
 
 pets = owner.get_pets()
 
