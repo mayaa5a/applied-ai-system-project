@@ -1,1 +1,45 @@
 timestamp,question,retrieved_context,confidence_score,answer,emergency_triggered,error_message
+2026-04-28T23:54:26,how many times should i walk my dog in a week?,"[Exercise]
+Most dogs benefit from daily walks. Exercise needs depend on breed, size, age, and health. A common starting point is 20-30 minutes once or twice daily.
+
+[Feeding]
+Dogs that skip one meal but act normal can usually be monitored. If appetite loss lasts more than 24 hours or includes vomiting, weakness, diarrhea, or behavior changes, contact a veterinarian.",0.4,"Based on PawPal's retrieved pet-care guide:
+
+[Exercise]
+Most dogs benefit from daily walks. Exercise needs depend on breed, size, age, and health. A common starting point is 20-30 minutes once or twice daily.
+
+[Feeding]
+Dogs that skip one meal but act normal can usually be monitored. If appetite loss lasts more than 24 hours or includes vomiting, weakness, diarrhea, or behavior changes, contact a veterinarian.
+
+PawPal cannot diagnose medical problems. If symptoms are serious, unusual, or persist, contact a veterinarian.",False,
+2026-04-29T00:05:27,how often should i walk my dog?,"[Exercise]
+Most dogs benefit from daily walks. Exercise needs depend on breed, size, age, and health. A common starting point is 20-30 minutes once or twice daily.
+
+[Feeding]
+Dogs that skip one meal but act normal can usually be monitored. If appetite loss lasts more than 24 hours or includes vomiting, weakness, diarrhea, or behavior changes, contact a veterinarian.",0.67,"Based on PawPal's retrieved pet-care guide:
+
+[Exercise]
+Most dogs benefit from daily walks. Exercise needs depend on breed, size, age, and health. A common starting point is 20-30 minutes once or twice daily.
+
+[Feeding]
+Dogs that skip one meal but act normal can usually be monitored. If appetite loss lasts more than 24 hours or includes vomiting, weakness, diarrhea, or behavior changes, contact a veterinarian.
+
+PawPal cannot diagnose medical problems. If symptoms are serious, unusual, or persist, contact a veterinarian.",False,
+2026-04-29T00:07:29,my cat is having trouble breathing,"[Cats]
+Cats need fresh water, clean litter boxes, routine feeding, and enrichment. Sudden changes in appetite, breathing, litter box use, or energy can be warning signs.
+
+[Emergency Warning Signs]
+Trouble breathing, repeated vomiting, collapse, seizures, severe bleeding, poisoning, or extreme weakness may be emergencies. Contact a veterinarian or emergency animal clinic immediately.",0.75,This may be an emergency. PawPal cannot diagnose medical problems. Please contact a veterinarian or emergency animal clinic immediately.,True,
+2026-04-29T00:08:19,can my dog eat a tripple berry vanilla cupcake with sprinkles,"[Feeding]
+Dogs that skip one meal but act normal can usually be monitored. If appetite loss lasts more than 24 hours or includes vomiting, weakness, diarrhea, or behavior changes, contact a veterinarian.
+
+[Exercise]
+Most dogs benefit from daily walks. Exercise needs depend on breed, size, age, and health. A common starting point is 20-30 minutes once or twice daily.",0.14,"Based on PawPal's retrieved pet-care guide:
+
+[Feeding]
+Dogs that skip one meal but act normal can usually be monitored. If appetite loss lasts more than 24 hours or includes vomiting, weakness, diarrhea, or behavior changes, contact a veterinarian.
+
+[Exercise]
+Most dogs benefit from daily walks. Exercise needs depend on breed, size, age, and health. A common starting point is 20-30 minutes once or twice daily.
+
+PawPal cannot diagnose medical problems. If symptoms are serious, unusual, or persist, contact a veterinarian.",False,

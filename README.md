@@ -4,6 +4,9 @@ PawPal is a Streamlit pet-care scheduling app with an added "Ask PawPal AI" feat
 
 The original scheduling features are still included: users can add pets, create tasks, view today's schedule, mark tasks complete, and filter tasks.
 
+## Demo Link
+https://youtu.be/-eWEbfEgfSA
+
 ## RAG Architecture
 
 The RAG flow is intentionally simple and beginner-friendly:
